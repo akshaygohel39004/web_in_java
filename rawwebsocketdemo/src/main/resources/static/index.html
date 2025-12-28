@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>Raw webSocket example</h1>
+
+<input id="msg" placeholder="type message">
+<button onclick="sendMsg()">Send</button>
+
+<pre id="log"></pre>
+
+<script>
+    let ws = new WebSocket("ws://localhost:8080/echo");
+
+    ws.onopen = () => {
+        log("Connected to server");
+    };
+
+    ws.onmessage = (event) => {
+        log("Server: " + event.data);
+    };
+
+    ws.onclose = () => {
+        log("Connection closed");
+    };
+
+    function sendMsg() {
+        let text = document.getElementById("msg").value;
+        ws.send(text);
+        log("Client: " + text);
+    }
+
+    function log(message) {
+        document.getElementById("log").textContent += message + "\n";
+    }
+</script>
+</body>
+
+</html>
