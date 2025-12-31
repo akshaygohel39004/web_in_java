@@ -1,28 +1,28 @@
-package com.akshay.crud_maping_demo.manytomany.entity;
+package com.akshay.crud_maping_demo.onetomany.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.util.List;
+import java.util.UUID;
 
 @Entity
-@Table(name = "many_many_course")
+@Table(name = "s_course")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @RequiredArgsConstructor
-public class ManyManyCourse {
+public class SCourse {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue
+    private UUID id;
 
     @NonNull
     private String courseName;
 
     @JsonManagedReference
-    @ManyToMany(mappedBy = "manyManyCourses")
-    private List<ManyManyStudent> manyManyStudents;
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
+    private List<SStudent> students;
 }

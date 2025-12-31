@@ -1,32 +1,32 @@
 package com.akshay.crud_maping_demo.manytomany.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.util.List;
-
+import java.util.UUID;
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Entity
-@Table(name = "many_many_student")
+@Table(name = "t_student")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @RequiredArgsConstructor
-public class ManyManyStudent {
+public class TStudent {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue
+    private UUID id;
 
     @NonNull
     private String name;
 
-    @JsonBackReference
     @ManyToMany
     @JoinTable(
-            name = "student_course_map",
+            name = "t_student_course_map",
             joinColumns = @JoinColumn(name = "student_id"),
             inverseJoinColumns = @JoinColumn(name = "course_id")
     )
-    private List<ManyManyCourse> manyManyCourses;
+    private List<TCourse> courses;
 }

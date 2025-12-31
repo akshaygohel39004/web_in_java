@@ -3,7 +3,7 @@ package com.akshay.crud_maping_demo.onetoone.entity;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
-
+import java.util.UUID;
 
 @Entity
 @Data
@@ -11,20 +11,19 @@ import lombok.*;
 @NoArgsConstructor
 @RequiredArgsConstructor
 public class Student {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue
+    private UUID id;
+
 
     @NonNull
     private String name;
 
 
-
     @JsonManagedReference
     @NonNull
     @OneToOne
-    @JoinColumn(name ="course_id")
+    @JoinColumn(name = "course_id")
     private Course course;
-
-
 }
