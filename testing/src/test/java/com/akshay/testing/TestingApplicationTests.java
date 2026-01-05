@@ -2,6 +2,7 @@ package com.akshay.testing;
 
 import com.akshay.testing.entity.People;
 import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -12,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class TestingApplicationTests {
 
+    @DisplayName("t1")
     @Test
     void basicTesting(){
         //here all testmethod are written in one method for learning purpose,it should be written based on they requirements.
@@ -27,6 +29,7 @@ class TestingApplicationTests {
 
 
 
+    @DisplayName("t2")
     @Tag("f1")
     @Test
     @Disabled
@@ -38,10 +41,9 @@ class TestingApplicationTests {
 
         assertSame(p1,p2);
     }
+
+    @DisplayName("t3")
     @Tag("f1")
-
-
-
     @Test
     void objecteqality(){
         People p1=new People();
@@ -52,12 +54,14 @@ class TestingApplicationTests {
         assertEquals(p1,p2);
     }
 
+    @DisplayName("t4")
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3,-5,20})
     void testPositiveNumbers(int number) {
         assertTrue(number > 0);
     }
 
+    @DisplayName("t5")
     @ParameterizedTest
     @CsvSource({
             "2, 3, 5",
